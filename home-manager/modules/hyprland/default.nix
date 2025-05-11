@@ -6,9 +6,11 @@
     pkgs.hyprland
     pkgs.hyprlock
     pkgs.rofi
+    pkgs.pulseaudio
+    pkgs.brightnessctl
+    pkgs.slurp
+    pkgs.grim
   ];
-
-  programs.home-manager.enable = true;
 
   programs.rofi = {
     enable = true;

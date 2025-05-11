@@ -131,6 +131,11 @@
   # gaming 
   steam
   discord
+  spotify
+
+  # Utility
+  obsidian
+  zoom-us
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -178,7 +183,7 @@ programs.zsh = {
     };
 
 # With Oh-My-Zsh:
-  oh-my-zsh = {
+  ohMyZsh = {
     enable = true;
     theme = "gnzh";
   };
