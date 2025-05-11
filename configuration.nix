@@ -104,26 +104,33 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+
   hyprland
-  vim 
+  swaybg
+  fuzzel
+
   neovim
-  vifm
+  vim 
+  imagemagick
+  texliveFull
+  ghostscript
+  fzf
+
+  ghostty
   git
   gh
-  ghostty
-  kitty
+  vifm
   tmux
+  neofetch
+
   # Waybar pkgs
   waybar
   blueman
   pavucontrol
 
-  swaybg
-  fuzzel
-  bash
-  neofetch
-
-  fzf
+  # gaming 
+  steam
+  discord
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -153,10 +160,28 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 
+  programs.steam.enable = true;
+
   programs.hyprland.enable = true; # enable Hyprland
     # System-wide cursor settings
   environment.variables = {
     XCURSOR_THEME = "Bibata-Modern-Ice";  # Or your preferred theme
     XCURSOR_SIZE = "24";
   };
+programs.zsh = {
+    enable = true;
+
+    shellAliases = {
+      ll = "ls -l";
+      edit = "sudo -e";
+      update = "sudo nixos-rebuild switch";
+    };
+
+# With Oh-My-Zsh:
+  oh-my-zsh = {
+    enable = true;
+    theme = "gnzh";
+  };
+};
+users.users.zenodea.shell = pkgs.zsh;
 }

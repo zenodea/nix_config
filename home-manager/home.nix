@@ -14,7 +14,6 @@
     ./modules/nvim/default.nix
     ./modules/vifm/default.nix
     ./modules/waybar/default.nix
-    ./modules/firefox/default.nix
   ];
 
   home.packages = [
