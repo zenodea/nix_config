@@ -102,40 +102,8 @@
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
 
-  hyprland
-  swaybg
-  fuzzel
-
-  neovim
-  vim 
-  imagemagick
-  texliveFull
-  ghostscript
-  fzf
-
-  ghostty
-  git
-  gh
-  vifm
-  tmux
-  neofetch
-
-  # Waybar pkgs
-  waybar
-  blueman
-  pavucontrol
-
-  # gaming 
-  steam
-  discord
-  spotify
-
-  # Utility
-  obsidian
-  zoom-us
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -19,6 +19,15 @@
   home.packages = [
     pkgs.htop
     pkgs.fortune
+
+    # gaming 
+    pkgs.steam
+    pkgs.discord
+    pkgs.spotify
+
+    # Utility
+    pkgs.obsidian
+    pkgs.zoom-us
   ];
 
   # This value determines the Home Manager release that your

@@ -10,6 +10,8 @@
     pkgs.brightnessctl
     pkgs.slurp
     pkgs.grim
+    pkgs.swaybg
+    pkgs.fuzzel
   ];
 
   programs.rofi = {

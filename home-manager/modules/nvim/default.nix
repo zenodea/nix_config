@@ -23,6 +23,14 @@ let
   };
 in
 {
+  home.packages = [
+    pkgs.vim 
+    pkgs.imagemagick
+    pkgs.texliveFull
+    pkgs.ghostscript
+    pkgs.fzf
+  ];
+
   programs.neovim = {
     enable = true;
     extraPackages = with pkgs; [
