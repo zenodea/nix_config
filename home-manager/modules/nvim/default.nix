@@ -16,7 +16,7 @@ let
       packages.myVimPackage = with pkgs.vimPlugins; {
         start = [
           nvim-treesitter.withAllGrammars
-          plenary-nvim # example dependency
+          plenary-nvim 
         ];
       };
     };
@@ -25,9 +25,15 @@ in
 {
   home.packages = [
     pkgs.vim 
+
+    # Image support in NVIM
     pkgs.imagemagick
+
+    # Latex Support
     pkgs.texliveFull
     pkgs.ghostscript
+    
+    # Fuzzy Finder
     pkgs.fzf
   ];
 

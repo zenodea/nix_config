@@ -101,10 +101,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  environment.systemPackages = with pkgs; [
-
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -136,6 +132,11 @@
   programs.steam.enable = true;
 
   programs.hyprland.enable = true; # enable Hyprland
+
+  environment.systemPackages = [ pkgs.direnv ];
+  programs.direnv.enable = true;
+    programs.direnv.nix-direnv.enable = true;  # This is crucial
+
     # System-wide cursor settings
   environment.variables = {
     XCURSOR_THEME = "Bibata-Modern-Ice";  # Or your preferred theme

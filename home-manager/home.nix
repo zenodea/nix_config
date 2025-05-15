@@ -14,6 +14,7 @@
     ./modules/nvim/default.nix
     ./modules/vifm/default.nix
     ./modules/waybar/default.nix
+    ./modules/wlogout/default.nix
   ];
 
   home.packages = [

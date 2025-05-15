@@ -18,7 +18,8 @@ window#waybar {
   /*  border-radius: 15px; */
  /*  border: 2px solid #124323; */
 /* border: 0px solid #A1BDCE; */
- border: 2px solid rgba(189,147,249, 0.1);
+
+ border: 2px solid rgba(189, 147, 249, 1);
  border-radius: 10px;
  padding: 30px;
 }

@@ -12,14 +12,25 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+    };
+
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager, rust-overlay, ... }: {
     nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+
           ./configuration.nix
+
+          ({ pkgs,  ... }: {
+            nixpkgs.overlays = [rust-overlay.overlays.default ];
+            environment.systemPackages = [pkgs.rust-bin.stable.latest.default ];
+          })
 
           home-manager.nixosModules.home-manager
           {

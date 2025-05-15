@@ -12,6 +12,7 @@
     pkgs.grim
     pkgs.swaybg
     pkgs.fuzzel
+    pkgs.swww
   ];
 
   programs.rofi = {
