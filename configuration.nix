@@ -148,7 +148,9 @@ programs.zsh = {
     shellAliases = {
       ll = "ls -l";
       edit = "sudo -e";
-      update = "sudo nixos-rebuild switch";
+      rebuild = "sudo nixos-rebuild switch";
+      update = "sudo nixos-rebuild switch --upgrade";
+      home = "cd /etc/nixos";
     };
 
 # With Oh-My-Zsh:
@@ -158,4 +160,5 @@ programs.zsh = {
   };
 };
 users.users.zenodea.shell = pkgs.zsh;
+services.flatpak.enable = true;
 }

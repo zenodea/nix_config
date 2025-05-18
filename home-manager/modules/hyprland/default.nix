@@ -13,6 +13,7 @@
     pkgs.swaybg
     pkgs.fuzzel
     pkgs.swww
+    pkgs.ffmpeg
   ];
 
   programs.rofi = {
