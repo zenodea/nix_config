@@ -3,7 +3,6 @@
 {
   # Enable Hyprland (assumes NixOS or flakes handle main installation)
   home.packages = [
-    pkgs.ghostty
     pkgs.git
     pkgs.gh
     pkgs.tmux

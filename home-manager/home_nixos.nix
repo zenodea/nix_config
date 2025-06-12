@@ -1,24 +1,23 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "zenodea";
+  home.username ="zenodea";
   home.homeDirectory = "/home/zenodea";
 
   # Packages that should be installed to the user profile.
   imports = [
-    ./modules/hyprland/default.nix
     ./modules/ghostty/default.nix
-    ./modules/fuzzel/default.nix
     ./modules/nvim/default.nix
-    ./modules/vifm/default.nix
     ./modules/waybar/default.nix
     ./modules/cursor/default.nix
     ./modules/rofi/default.nix
+    ./modules/fuzzel/default.nix
+    ./modules/hyprland/default.nix
+    ./modules/vifm/default.nix
+    ./modules/tmux/default.nix
   ];
 
-  home.packages = [
+  home.packages =  [
     pkgs.htop
     pkgs.fortune
 
