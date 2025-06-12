@@ -2,7 +2,6 @@
   
   # macOS-specific packages
   environment.systemPackages = with pkgs; [
-  
   ];
 
     # Enable nix daemon
@@ -10,7 +9,7 @@
   
   # Enable experimental features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-    #
+
   # System preferences
   system.defaults = {
     dock.autohide = true;
@@ -54,8 +53,9 @@ homebrew = {
   };
 
   system.stateVersion = 5;
-
-programs.zsh = {
-    enable = true;
+  system.activationScripts.setWallpaper = {
+    text = ''
+      /usr/bin/osascript -e 'tell application "System Events" to tell every desktop to set picture to "../../misc/irelia_2b.jpg"'
+    '';
   };
 }

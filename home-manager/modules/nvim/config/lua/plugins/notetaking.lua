@@ -37,13 +37,6 @@ return {
     ---@type render.md.UserConfig
     opts = {},
   },
-  {
-    "vhyrro/luarocks.nvim",
-    priority = 1001, -- this plugin needs to run before anything else
-    opts = {
-      rocks = { "magick" },
-    },
-  },
   { "nvim-treesitter/nvim-treesitter", opts = {
     ensure_installed = "latex",
   } },

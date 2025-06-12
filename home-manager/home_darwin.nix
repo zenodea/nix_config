@@ -16,7 +16,8 @@
     ./modules/zsh/default.nix
   ]; 
 
-  home.packages =  [
+  home.packages = with pkgs;  [
+    nodejs
   ];
 
   # This value determines the Home Manager release that your
@@ -39,8 +40,5 @@
         plugins = [ "git" "sudo" "docker" "kubectl" ];
         theme = "robbyrussell";
       };
-      enableCompletion = true;
-      enableAutosuggestions = true;
-      enableSyntaxHighlighting = true;
     };
 }

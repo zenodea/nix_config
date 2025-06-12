@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     # home-manager, used for managing user configuration
@@ -21,12 +22,18 @@
 
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nix-darwin, rust-overlay, ... }: {
-
+  outputs = inputs@{ nixpkgs, nixpkgs-unstable, home-manager, nix-darwin, rust-overlay, ... }: {
     darwinConfigurations."Zenos-MacBook-Pro" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin"; # or x86_64-darwin
       modules = [
         ./hosts/darwin/configuration.nix
+
+        ({ pkgs,  ... }: {
+          nixpkgs.overlays = [rust-overlay.overlays.default ];
+          environment.systemPackages = [pkgs.rust-bin.stable.latest.default ];
+        })
+
+
         home-manager.darwinModules.home-manager
         {
           users.users.zenodeangeli.home = "/Users/zenodeangeli";
