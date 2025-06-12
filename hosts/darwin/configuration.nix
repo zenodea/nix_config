@@ -27,10 +27,30 @@
   };
 
   # Homebrew for things not available in Nix
-  homebrew = {
+homebrew = {
     enable = true;
-    casks = [
+        taps = [
+      "FelixKratz/formulae"
+      "nikitabobko/tap"
+      # Add any custom taps you need
     ];
+    # Homebrew packages to install
+    brews = [
+      "sketchybar"
+      "borders"
+      # Add your desired brew packages here
+    ];
+    
+    # Homebrew casks to install
+    casks = [
+      "nikitabobko/tap/aerospace"
+      # Add your desired cask packages here
+    ];
+    
+    # Mac App Store apps
+    masApps = {
+      # "App Name" = app_id;
+    };
   };
 
   system.stateVersion = 5;

@@ -18,6 +18,9 @@
   ];
 
   home.packages =  [
+    # No Darwin package, thus must be removed from shared config
+    pkgs.ghostty
+
     pkgs.htop
     pkgs.fortune
 

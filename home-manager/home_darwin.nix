@@ -11,6 +11,9 @@
     ./modules/vifm/default.nix
     ./modules/borders/default.nix
     ./modules/tmux/default.nix
+    ./modules/sketchybar/default.nix
+    ./modules/aerospace/default.nix
+    ./modules/zsh/default.nix
   ]; 
 
   home.packages =  [
@@ -28,4 +31,16 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.zsh = {
+      enable = true;
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" "sudo" "docker" "kubectl" ];
+        theme = "robbyrussell";
+      };
+      enableCompletion = true;
+      enableAutosuggestions = true;
+      enableSyntaxHighlighting = true;
+    };
 }
