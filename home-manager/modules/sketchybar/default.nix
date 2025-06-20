@@ -2,5 +2,5 @@
 
 {
   # Link a file to ~/.config/hypr/my_config.conf
-  home.file.".config/sketchybar/".source = ./config;
+  home.file.".config/sketchybar".source = ./config;
 }

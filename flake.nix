@@ -16,23 +16,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-    };
-
   };
 
-  outputs = inputs@{ nixpkgs, nixpkgs-unstable, home-manager, nix-darwin, rust-overlay, ... }: {
+  outputs = inputs@{ nixpkgs, nixpkgs-unstable, home-manager, nix-darwin, ... }: {
     darwinConfigurations."Zenos-MacBook-Pro" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin"; # or x86_64-darwin
       modules = [
         ./hosts/darwin/configuration.nix
-
-        ({ pkgs,  ... }: {
-          nixpkgs.overlays = [rust-overlay.overlays.default ];
-          environment.systemPackages = [pkgs.rust-bin.stable.latest.default ];
-        })
-
 
         home-manager.darwinModules.home-manager
         {
@@ -51,11 +41,6 @@
         modules = [
 
           ./hosts/nixos/configuration.nix
-
-          ({ pkgs,  ... }: {
-            nixpkgs.overlays = [rust-overlay.overlays.default ];
-            environment.systemPackages = [pkgs.rust-bin.stable.latest.default ];
-          })
 
           home-manager.nixosModules.home-manager
           {
