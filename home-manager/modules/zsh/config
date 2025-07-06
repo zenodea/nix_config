@@ -72,8 +72,10 @@ ZSH_THEME="gnzh"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-export PATH=$HOME/.local/lib/node_modules/.bin:$PATH
 
+# NPM related
+export PATH=$HOME/.local/lib/node_modules/.bin:$PATH
+export PATH="$HOME/.npm-global/bin:$PATH"
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"

@@ -32,6 +32,10 @@
     # Utility
     pkgs.obsidian
     pkgs.zoom-us
+
+    # NPM
+    pkgs.nodejs
+    pkgs.node2nix
   ];
 
   # This value determines the Home Manager release that your
