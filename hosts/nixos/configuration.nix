@@ -89,7 +89,7 @@
   users.users.zenodea = {
     isNormalUser = true;
     description = "Zeno de Angeli";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [
     #  thunderbird
     ];
@@ -133,7 +133,17 @@
 
   programs.hyprland.enable = true; # enable Hyprland
 
-  environment.systemPackages = [ pkgs.direnv ];
+  # Install virt-manager and related tools
+  environment.systemPackages = with pkgs; [
+    virt-manager
+    virt-viewer
+    spice
+    spice-gtk
+    spice-protocol
+    win-virtio
+    win-spice
+    direnv
+  ];
   programs.direnv.enable = true;
     programs.direnv.nix-direnv.enable = true;  # This is crucial
 
@@ -142,7 +152,8 @@
     XCURSOR_THEME = "Bibata-Modern-Ice";  # Or your preferred theme
     XCURSOR_SIZE = "24";
   };
-programs.zsh = {
+
+  programs.zsh = {
     enable = true;
 
     shellAliases = {
@@ -152,13 +163,17 @@ programs.zsh = {
       update = "sudo nixos-rebuild switch --upgrade";
       home = "cd /etc/nixos";
     };
-
-# With Oh-My-Zsh:
-  ohMyZsh = {
-    enable = true;
-    theme = "gnzh";
+    ohMyZsh = {
+        enable = true;
+        theme = "gnzh";
+      };
   };
-};
-users.users.zenodea.shell = pkgs.zsh;
-services.flatpak.enable = true;
+
+  # Virtual Machine
+  # Enable virtualization
+  virtualisation.libvirtd.enable = true;
+
+
+  users.users.zenodea.shell = pkgs.zsh;
+  services.flatpak.enable = true;
 }

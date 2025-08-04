@@ -26,6 +26,7 @@
 
     # gaming 
     pkgs.steam
+    pkgs.gamescope
     pkgs.discord
     pkgs.spotify
 
