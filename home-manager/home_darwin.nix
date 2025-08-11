@@ -14,6 +14,9 @@
     ./modules/sketchybar/default.nix
     ./modules/aerospace/default.nix
     ./modules/zsh/default.nix
+
+    # Languages
+    ./modules/languages/typescript/default.nix
   ]; 
 
   home.packages = with pkgs;  [
