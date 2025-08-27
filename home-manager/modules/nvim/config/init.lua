@@ -3,9 +3,6 @@ require("config.lazy")
 
 require('neotest').setup({
   log_level = vim.log.levels.DEBUG,
-  adapters = {
-    require('rustaceanvim.neotest'), -- Use rustaceanvim's built-in adapter
-  },
   output = {
     enabled = true,
     open_on_run = true,
