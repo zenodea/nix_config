@@ -133,6 +133,20 @@
 
   programs.hyprland.enable = true; # enable Hyprland
 
+    # Enable virtualization
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = false;
+      swtpm.enable = true;
+      ovmf = {
+        enable = true;
+        packages = [ pkgs.OVMFFull.fd ];
+      };
+    };
+  };
+
   # Install virt-manager and related tools
   environment.systemPackages = with pkgs; [
     virt-manager
@@ -168,11 +182,6 @@
         theme = "gnzh";
       };
   };
-
-  # Virtual Machine
-  # Enable virtualization
-  virtualisation.libvirtd.enable = true;
-
 
   users.users.zenodea.shell = pkgs.zsh;
   services.flatpak.enable = true;
