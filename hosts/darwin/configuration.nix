@@ -37,6 +37,8 @@ homebrew = {
     brews = [
       "sketchybar"
       "borders"
+      "svim"
+      "spicetify-cli"
       # Add your desired brew packages here
     ];
     

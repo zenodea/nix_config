@@ -4,15 +4,6 @@ let
   # Neovim with all treesitter grammars prebuilt
   nvimWithTS = pkgs.neovim.override {
     configure = {
-      customRC = ''
-        set runtimepath^=${pkgs.vimPlugins.nvim-treesitter.withAllGrammars}
-        lua << EOF
-        require'nvim-treesitter.configs'.setup {
-          highlight = { enable = true },
-          indent = { enable = true },
-        }
-        EOF
-      '';
       packages.myVimPackage = with pkgs.vimPlugins; {
         start = [
           nvim-treesitter.withAllGrammars
@@ -22,6 +13,7 @@ let
     };
   };
 in
+
 {
   home.packages = [
     pkgs.vim 
