@@ -4,8 +4,7 @@
   environment.systemPackages = with pkgs; [
   ];
 
-    # Enable nix daemon
-  services.nix-daemon.enable = true;
+  system.primaryUser  = "zenodeangeli";
   
   # Enable experimental features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

@@ -10,6 +10,19 @@ programs.nixvim = {
 
   globals.mapleader = " ";
 
+
+    diagnostics = {
+      virtual_text = {
+        severity = null; # Show all severities
+        source = "if_many";
+        prefix = "●";
+        spacing = 4;
+      };
+      signs = true;
+      underline = true;
+      update_in_insert = false;
+      severity_sort = true;
+    };
   opts = {
     number = true;
     relativenumber = true;
@@ -50,6 +63,7 @@ programs.nixvim = {
     lsp = {
       enable = true;
       servers = {
+
         lua_ls = {
           enable = true;
           settings.Lua = {
@@ -64,7 +78,34 @@ programs.nixvim = {
         };
         rust_analyzer.enable = true;
         pyright.enable = true;
-        ts_ls.enable = true;
+
+        # TypeScript/JavaScript - handles React, Next.js automatically
+        ts-ls = {
+          enable = true;
+          # Optional: configure for better React support
+          settings = {
+            typescript = {
+              preferences = {
+                includePackageJsonAutoImports = "auto";
+              };
+            };
+            javascript = {
+              preferences = {
+                includePackageJsonAutoImports = "auto";
+              };
+            };
+          };
+        };
+        
+        # ESLint for linting
+        eslint.enable = true;
+        
+        # JSON for config files
+        jsonls.enable = true;
+        
+        # CSS/Tailwind if you use them
+        tailwindcss.enable = true;
+        cssls.enable = true;
         gopls.enable = true;
         clangd.enable = true;
         nil_ls.enable = true;

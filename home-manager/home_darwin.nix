@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{pkgs, ... }:
 
 {
   home.username = "zenodeangeli";
@@ -14,13 +14,11 @@
     ./modules/sketchybar/default.nix
     ./modules/aerospace/default.nix
     ./modules/zsh/default.nix
-
-    # Languages
-    ./modules/languages/typescript/default.nix
   ]; 
 
   home.packages = with pkgs;  [
     nodejs
+    ripgrep
   ];
 
   # This value determines the Home Manager release that your
@@ -36,12 +34,4 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.zsh = {
-      enable = true;
-      oh-my-zsh = {
-        enable = true;
-        plugins = [ "git" "sudo" "docker" "kubectl" ];
-        theme = "robbyrussell";
-      };
-    };
 }

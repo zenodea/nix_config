@@ -6,7 +6,6 @@
     pkgs.git
     pkgs.gh
     pkgs.tmux
-    pkgs.neofetch
   ];
 
   home.file.".config/ghostty/config".source = ./config;

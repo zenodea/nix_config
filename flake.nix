@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
+    nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     # home-manager, used for managing user configuration
     home-manager = {
@@ -28,7 +28,13 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
 
-          home-manager.users.zenodeangeli = import ./home-manager/home_darwin.nix;
+            home-manager.users.zenodeangeli = {
+              imports= 
+              [ 
+                nixvim.homeModules.nixvim
+                ./home-manager/home_darwin.nix
+              ];
+        };
         }
       ];
     };
