@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, inputs, ... }:
 
 {
   home.username ="zenodea";
@@ -15,11 +15,14 @@
     ./modules/hyprland/default.nix
     ./modules/vifm/default.nix
     ./modules/tmux/default.nix
+    ./modules/work/default.nix
   ];
 
   home.packages =  [
     # No Darwin package, thus must be removed from shared config
     pkgs.ghostty
+    pkgs.ripgrep
+    pkgs.clang
 
     pkgs.htop
     pkgs.fortune
@@ -37,6 +40,10 @@
     # NPM
     pkgs.nodejs
     pkgs.node2nix
+    pkgs.claude-code
+
+    # Compiler
+
   ];
 
   # This value determines the Home Manager release that your

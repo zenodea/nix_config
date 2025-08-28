@@ -1,66 +1,38 @@
 {
   "layer": "top",
-  "position": "top",
-  "height": 24,
-  "margin-left": 5,
-  "margin-right": 5,
-  "spacing": 4,
+  "height": 28,
   "modules-left": [
     "hyprland/workspaces"
   ],
   "modules-center": [
-    "hyprland/window"
+    "clock"  // Add clock module to the center
   ],
+"clock": {
+  "interval": 30,
+  "format": "{:%I:%M %p}",
+  "tooltip-format": "{:%a, %d %b %G}"
+},
+
   "modules-right": [
     "power-profiles-daemon",
+    "pulseaudio",
     "bluetooth",
     "network",
-    "pulseaudio",
-    "backlight",
-    "battery",
-    "clock",
+    "battery"
   ],
-  "wlr/taskbar": {
-    "on-click": "activate",
-    "on-click-middle": "close",
-    "ignore-list": [
-      "foot"
-    ]
-  },
-  "hyprland/workspaces": {
-    "format": "{icon}",
-    "format-icons": {
-      "default": "",
-      "active": "",
-      //"default": "○",
-      //"default": "●"
-    },
-  },
   "hyprland/window": {
-    "max-length": 128
-  },
-  "clock": {
-    "format": "{:%c}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-  },
-  "tray": {
-    "spacing": 4
+    "max-length": 30
   },
   "hyprland/language": {
-    "format-pl": "[pl]",
-    "format-en": "[us]",
-    "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
+    "format-en": "En",
+    "format-ru": "Ru"
   },
-  "backlight": {
-    "device": "intel_backlight",
-    "format": "{icon} {percent}%",
-    "format-icons": [
-      "",
-      ""
-    ]
+  "tray": {
+    "icon-size": 20,
+    "spacing": 8
   },
-  "pulseaudio": {
-    "format": "{icon} {volume}%",
+    "pulseaudio": {
+    "format": "{icon}  {volume}%",
     "format-bluetooth": "{icon}  {volume}%",
     "format-muted": "",
     "format-icons": {
@@ -81,48 +53,7 @@
     "scroll-step": 1,
     "on-click": "pavucontrol"
   },
-  "battery": {
-    "interval": 60,
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "{icon} {capacity}%",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
-    "max-length": 25
-  },
-  "network": {
-    "interface": "wlp1s0",
-    "format": "{ifname}",
-    "format-wifi": "󰤨 {signalStrength}%",
-    "format-ethernet": "{ifname} ",
-    "format-disconnected": "", //An empty format will hide the module.
-    "format-disconnected": "",
-    "tooltip-format": "{ifname}",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%) 󰤨",
-    "tooltip-format-ethernet": "{ifname} ",
-    "tooltip-format-disconnected": "Disconnected",
-    "max-length": 50,
-    "on-click": "kitty nmtui" //run ghostty with nmtui
-  },
-  "power-profiles-daemon": {
-    "format": "{icon}",
-    "tooltip-format": "Power profile: {profile}",
-    "tooltip": true,
-    "format-icons": {
-      "default": "",
-      "performance": "",
-      "balanced": "",
-      "power-saver": ""
-    }
-  },
-  "bluetooth": {
+    "bluetooth": {
     "format": "",
     "format-connected": "",
     "format-connected-battery": "",
@@ -132,5 +63,87 @@
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
     "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
     "on-click": "blueman-manager"
+  },
+    "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
+  "network": {
+    "interface": "wlp1s0",
+    "format": "{ifname}",
+    "format-wifi": "󰤨 {signalStrength}%",
+    "format-ethernet": "{ifname} ",
+    "format-disconnected": "", //An empty format will hide the module.
+    "format-disconnected": "Disconnected",
+    "tooltip-format": "{ifname}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) 󰤨",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 32,
+    "on-click": "ghostty nmtui" //run ghostty with nmtui
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "",
+      ""
+    ]
+  },
+  "battery": {
+    "interval": 60,
+    "format-time": "{H}:{m}",
+    "format-icons": [
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ],
+    "format-discharging": "{icon} {capacity}% ({time})",
+    "format-charging": "󰂄 {capacity}%",
+    "format": ""
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "1": "⼀",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十"
+    },
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": []
+    },
+    "sort-by-number": true
   }
 }
+

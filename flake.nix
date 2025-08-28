@@ -2,23 +2,21 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     # home-manager, used for managing user configuration
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
-      # The `follows` keyword in inputs is used for inheritance.
-      # Here, `inputs.nixpkgs` of home-manager is kept consistent with
-      # the `inputs.nixpkgs` of the current flake,
-      # to avoid problems caused by different versions of nixpkgs.
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ nixpkgs, nixpkgs-unstable, home-manager, nix-darwin, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager, nix-darwin, nixvim,... }: {
     darwinConfigurations."Zenos-MacBook-Pro" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin"; # or x86_64-darwin
       modules = [
@@ -39,15 +37,19 @@
         nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-
           ./hosts/nixos/configuration.nix
 
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-
-            home-manager.users.zenodea = import ./home-manager/home_nixos.nix;
+                    # This ensures home-manager inherits the nixpkgs config from NixOS
+            home-manager.users.zenodea = {
+              imports= [ 
+              nixvim.homeModules.nixvim
+                ./home-manager/home_nixos.nix
+              ];
+            };
           }
         ];
       };

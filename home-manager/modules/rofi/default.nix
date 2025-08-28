@@ -7,8 +7,8 @@
 
   programs.rofi = {
     enable = true;
-  };
-
-  home.file.".config/rofi/themes/tokyonight.rasi".source = ./themes/tokyonight.rasi;
+  theme = ./nord.rasi;
+  # Add other rofi configuration here
+};
 
 }

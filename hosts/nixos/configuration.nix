@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{pkgs, lib, ... }:
 
 {
   imports =
@@ -25,7 +25,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Install Nerdfonts
-  fonts.packages = with pkgs; [ nerdfonts ];
+  fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
   
   # Enable networking
   networking.networkmanager.enable = true;
@@ -51,8 +51,8 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -67,7 +67,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -90,9 +90,6 @@
     isNormalUser = true;
     description = "Zeno de Angeli";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
   };
 
   # Install firefox.
@@ -158,6 +155,7 @@
     win-spice
     direnv
   ];
+
   programs.direnv.enable = true;
     programs.direnv.nix-direnv.enable = true;  # This is crucial
 
@@ -175,7 +173,7 @@
       edit = "sudo -e";
       rebuild = "sudo nixos-rebuild switch";
       update = "sudo nixos-rebuild switch --upgrade";
-      home = "cd /etc/nixos";
+      home = "cd ~/Documents/nixos/";
     };
     ohMyZsh = {
         enable = true;
