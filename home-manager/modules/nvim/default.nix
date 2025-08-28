@@ -11,7 +11,7 @@ programs.nixvim = {
   globals.mapleader = " ";
 
 
-    diagnostics = {
+    diagnostic.settings = {
       virtual_text = {
         severity = null; # Show all severities
         source = "if_many";
@@ -59,6 +59,7 @@ programs.nixvim = {
     };
 
   plugins = {
+    web-devicons.enable=true;
     # LSP
     lsp = {
       enable = true;
@@ -76,11 +77,16 @@ programs.nixvim = {
             telemetry.enable = false;
           };
         };
-        rust_analyzer.enable = true;
+
+        rust_analyzer = {
+            enable = true;
+            installCargo = true;
+            installRustc = true;
+        };
         pyright.enable = true;
 
         # TypeScript/JavaScript - handles React, Next.js automatically
-        ts-ls = {
+        ts_ls = {
           enable = true;
           # Optional: configure for better React support
           settings = {
